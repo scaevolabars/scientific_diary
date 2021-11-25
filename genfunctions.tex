@@ -1,0 +1,85 @@
+
+\section{Производящие функции}
+
+
+\begin{prb}[Закон распределения и линейное преобразование]
+	\hspace{1cm}
+	\begin{enumerate}
+		\item Найти закон распределения с п.ф. $G(s) = c (1 + 2s)^3$
+		\item Найти п.ф. случайной величины $ 2X + 3 $, если $X$ cлучайная величина п.ф. $ G(s)$
+	\end{enumerate}
+	
+\end{prb}
+	
+\begin{sol}
+	Воспользуемся cледующим свойством производящей функции:
+	\begin{equation}
+		G(0) = \Prob(X=0)  =  c (1 + 2s)^3 \bigg|_{s=0} = c \\
+		G(1) = \sum_{k=0}^{\infty} \Prob(X=k) = 1  \rightarrow c (1 + 2s)^3 \bigg|_{s=1}  = 1 \rightarrow c =  \frac{1}{27}
+	\end{equation} 
+
+	Теперь вспомвнив, что п.ф. это степенной ряд воспользуемся тем, что закон распреления можно однозначно восстановить продифференцировав п.ф., а именно 
+	\begin{align*}
+		\Prob(X=k) & = \frac{G^{(k)}(0)}{k!} \qquad  \Prob(X=1) = \frac{12c(2 s+1)^2}{1!} \bigg|_{s=0}  = \frac{12}{27} \\
+		  \Prob(X=2) & = \frac{48 c (1 + 2 s)}{2!} \bigg|_{s=0} = \frac{6}{27} \qquad \Prob(X=3) = \frac{96c}{3!} \bigg|_{s=0} = \frac{8}{27} \\
+	\end{align*}
+
+	Теперь зададимся вопросом как меняется п.ф. при произвольных преобразованиях случайной величины $Y = H(X)$.
+	\begin{equation}
+		G_{Y}(s) = G_{H(k)}(s) = \sum_{k=0}^{\infty} \Prob(X=k) s^{H(k)}
+	\end{equation}
+	Если $H(X)$  достаточно просто то $G_{Y}(s)$ можно выразить черзе $G_{X}(s)$.
+	Рассмотрим простейщий пример $Y = a + b X$
+	\begin{equation}
+		G_{Y}(s) = \Expec(s^Y) = \Expec(s^{a + b X}) = s^{a}\Expec(s^{b X}) = s^a G_{X}(s^b)
+	\end{equation}
+	Для случая из задачи имеем $a = 3, \quad b = 2$ 
+	\begin{equation}
+			G_{2X + 1}(s) = s^3 G_{X}(s^2)
+	\end{equation}
+	
+\end{sol}	
+
+
+\begin{prb}
+	\hspace{1cm}
+	Выразить $\Expec\left(\frac{1}{X + 1}\right)$ как интеграл от п.ф. $X$ и найти его для $ X \sim Geom(p)$   $ X \sim Poiss(\lambda)$.
+\end{prb}	
+
+\begin{sol}
+	Попробуем проинтегрировать $G_{X}(s)$	
+	\begin{equation}
+	\operatorname{Re} \int_{0}^{1} \diff{s} G_{X}(s)  = \int_{0}^{1} \diff{s}   \sum_{k=0}^{\infty} \Prob(X=k) s^{k} = \sum_{k=0}^{\infty} \frac{1}{k + 1}\Prob(X=k) s^{k + 1} \bigg|^{1}_{0} = \Expec\left(\frac{1}{X + 1}\right)
+	\end{equation}
+
+	\begin{equation}
+	\operatorname{Re} \int_{0}^{1} \diff{s} G_{X_{Geom}}(s)  =  \operatorname{Re} \int_{0}^{1} \diff{s} \frac{1 - p}{1 - ps} = \frac{(p-1) \log (1-p)}{p}
+	\end{equation}
+
+	\begin{equation}
+	\operatorname{Re}	\int_{0}^{1} \diff{s} G_{X_{Poiss}}(s)  =  \operatorname{Re} \int_{0}^{1} \diff{s} e^{-\lambda(1-s)} = \frac{1-e^{-\lambda }}{\lambda }
+	\end{equation}
+
+
+\end{sol}
+
+
+\begin{prb}
+	Монета бросается случайное кол-во $N$ раз, независящее от итогов бросков. Показать, что полученные количества орлов и решек независимы лишь при $N \sim Poiss(\lambda)$.
+\end{prb}
+
+\begin{sol}
+	
+	\begin{equation}
+		G_{X_{Bernoulli}}(s) = q + ps, \quad G_{N_{Poisson}}(s) = \sum_{k=0}^{\infty} s^n \frac{\lambda^n}{n!} e^{-\lambda} = e^{\lambda(1-s)}, \\
+		K = X_1 + X_2 + X_3 + \dots + X_N
+	\end{equation}
+	
+	По формуле: 
+	\begin{equation}
+		G_K(s) = G_N(G_X(s)) = e^{\lambda p(s - 1)}
+	\end{equation}
+
+	Производящая функция результирующего распределения имеет вид экспоненты как и у пуссоновского, что из себя подразумевает независимость.
+	
+\end{sol}
