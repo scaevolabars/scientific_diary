@@ -1,7 +1,7 @@
-\documentclass[10pt]{article}
+\documentclass[10pt]{book}
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[russian]{babel}
+\usepackage[russian,english]{babel}
 \usepackage[top = 2 cm, bottom = 2 cm, left = 1.5 cm, right = 3 cm]{geometry}
 
 \usepackage[fleqn]{amsmath}
@@ -14,6 +14,10 @@ colorlinks=true,
 linkcolor = blue,
 citecolor = blue]{hyperref}
 
+
+\usepackage{graphicx}
+
+
 \usepackage{ytableau}
 \usepackage{stmaryrd}
 \usepackage{tcolorbox}
@@ -22,21 +26,15 @@ citecolor = blue]{hyperref}
 \usepackage{setspace}
 \usepackage{pdfpages}
 
-\newtheorem{prb}{Задача}[subsection]
-\newtheorem{sol}{Решение}[subsection]
-\newtheorem{thm}{Theorem}[section]
+\input{definitions.tex}
 
-%%%%
-\newcommand{\Probab}{\mathbb{P}}
-\newcommand{\Expec}{\mathbb{E}}
-\newcommand*\diff[1]{\mathop{}\!\mathrm{d}{#1}\,}
-%%%%
+
 
 
 
 \title{Scientific Diary}
-\author{\date{ }}
-\date{}
+\author{Scaevola}
+\date{\today}
 
 \begin{document}
 	
@@ -44,6 +42,7 @@ citecolor = blue]{hyperref}
 	\maketitle
 	
 	\input{probability/measure.tex}
+	\input{numerical/monte_carlo.tex}
 	
 	
 	%\bibliographystyle{unsrturl}
