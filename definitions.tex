@@ -1,14 +1,34 @@
+\usepackage{enumerate}
+
+%%%%% Theorem Styles %%%%
+\usepackage{amsthm}
+\newtheoremstyle{excstyle}
+{10mm}                % Space above
+{10mm}                % Space below
+{\slshape}        % Theorem body font % (default is "\upshape")
+{}                % Indent amount
+{\bfseries}       % Theorem head font % (default is \mdseries)
+{.\newline}               % Punctuation after theorem head % default: no punctuation
+{10mm}               % Space after theorem head
+{}                % Theorem head spec
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
 
 %%%% Theorem Enviroments %%%%
+
 \newtheorem{prb}{Problem}[section]
+\theoremstyle{excstyle}
 \newtheorem{exc}{Exercise}[section]
 \newtheorem{sol}{Solution}[section]
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{heur}{Heuristic}[section]
 %%%%  New Commands%%%%
 \newcommand{\Probab}{\mathbb{P}}
-\newcommand{\Expec}{\mathbb{E}}
-\newcommand*\diff[1]{\mathop{}\!\mathrm{d}{#1}\,}
+\newcommand{\Expec}[1]{\mathbb{E}\left[{#1}\right]}
+\newcommand*\diff[1]{\mathop{}\!\mathrm{d}{#1}}
 %%%%
 
 
