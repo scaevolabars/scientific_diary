@@ -1,0 +1,111 @@
+\chapter{Stochastic Processes}
+
+\begin{center}
+	\begin{tabular}{ |c|c|c| } 
+		\hline
+			 	   & $\diff t$ & $\diff W_t$  \\ 
+		\hline
+		$\diff t$  & 0 & 0 \\ 
+		\hline
+		$\diff W_t$& 0 & $\diff t$ \\ 
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{exc}[Shreve 4.6]
+	Let $S_t = S(0)\exp((\alpha -\frac{\sigma^2}{2})t - \sigma W_t)$ be a geometric Brownian motion. \\
+	Let $p$ be a positive constant. Compute $\diff(S_{t}^{p}) $
+\end{exc}
+
+\begin{sol}
+	 First of all lets apply Ito-Doeblin formula to the function $f(x) = x^p$
+	 \begin{equation}
+	 \begin{aligned}
+	 	\diff f(S_t) =  \partial_{x} f(S_t) \diff S +  \frac{1}{2}\partial^{2}_{xx} f(S_t) (\diff S_t)^2 \\
+	 \end{aligned}
+	 \end{equation}
+ 	 For $\diff S(t)$ we have 
+ 	 \begin{equation}
+ 	 	\diff S_t = \alpha S_t \diff t + \sigma S_t \diff W_t
+ 	 \end{equation}
+  	To compute the $(\diff S_t)^2$ we apply mnemonic multiplication rule for stochastic differentials.
+  	\begin{equation}
+  		(\diff S_t)^2 = \left(\sigma S_t \diff W_t + \alpha S_t \diff t\right)^2 = \sigma^2 S^{2}_{t} (\diff W_t)^2
+  																				 + 2\sigma \alpha S^{2}_{t} \diff t \diff W_t 
+  																				 + \alpha^2 S^{2}_{t}(\diff t)^2  = \sigma^2 S^{2}_{t} \diff t
+  	\end{equation}
+	
+	Substituting derivatives and differentials of all orders to the formula we get:
+	\begin{equation}
+	\diff(S_{t}^{p}) = p S^{p}_{t} \left(\sigma \diff W_t + \left(\alpha  + \frac{p - 1}{2} \sigma^2\right)  \diff t\right)
+	\end{equation}
+\end{sol}	
+
+
+
+\begin{exc}[Shreve 4.7]
+	\begin{enumerate}[i]
+		\item	Compute $\diff{W^{4}_{t}}$ and then write $W^4(T)$ as the sum of the ordinary (Lebesgue) integral with respect to time and an Ito integral.
+		\item 	Take expectations on both sides of the formula you obtained in i, use the fact that $\Expec{W^2_t} = t$, and derive formula $\Expec{W^4_T} = 3T^2$.\\
+		\item   Use the method of i and ii to derive a formula for $\Expec{W^6_T}$.\\
+	\end{enumerate}
+\end{exc}
+
+\begin{sol}
+	\begin{enumerate}[i]
+		\item \begin{equation}
+			\begin{aligned}
+				\diff f(W_t) =  \partial_{x} f(W_t) \diff W_t  +  \frac{1}{2}\partial^{2}_{xx} f(W_t) (\diff W_t)^2, \; \text{where} \, f(W_t) = W^4_t. \\
+				\diff W^4_t = 4 W^3_t \diff W_t + \frac{4 \cdot 3}{2}  W^2_t (\diff W_t)^2 \\
+				\int_{0}^{T}\diff W^4_t = \int_{0}^{T} 4 W^3_t \diff W_t + \int_{0}^{T} 6  W^2_t \diff t \\
+				W^4_T = = \int_{0}^{T} 4 W^3_t \diff W_t + \int_{0}^{T} 6  W^2_t \diff t 
+			\end{aligned}
+		\end{equation}
+	
+		\item \begin{equation}
+			\begin{aligned}
+				\Expec{W^4_T} = 4 \cdot \Expec{\int_{0}^{T}  W^3_t \diff W_t}  +  6 \cdot \Expec{\int_{0}^{T} W^2_t \diff t } 
+			\end{aligned}
+		\end{equation}
+	
+	I will allow myself to be more detailed in this part because the following calculations are very useful and appear in many other places.\\
+	Firstly, lets handle the first summand and prove that it equals zero. One can recall theorem from stochastic calculus that states that integral of quandraticly integrable process w.t.r of Wiener process is martingale and if we prove that $W^3_t$ is quadraticly integrable the calculation of expectation becomes straightforward. \\
+	Lets show it for more general case  $W^n_t$.
+	
+	\begin{equation}
+		\Expec{X^n} = 
+		\begin{cases}
+			0 & n \text{ is odd}\\
+			\sigma^n (n - 1)!! & n \text{ is even}
+		\end{cases} \quad \text{where} \, X \sim \mathcal{N}(0, \sigma^2)
+	\end{equation}
+
+	\begin{equation}
+		\Expec{\int_{0}^{t} W^{n}_{s} \diff s} = \int_{0}^{t} \Expec{W^{n}_{s}} \diff s = \begin{cases}
+			0 & n \text{ is odd}\\
+			 (n - 1)!! \int_{0}^{t} s^{n/2} \diff s & n \text{ is even}
+		\end{cases}
+	\end{equation}
+
+	So the quadratica variation of  $W^3_t$ : $\int_{0}^{T} W^6_s \diff s < \infty$
+	From this follows that
+	 \begin{equation}
+		\Expec{\int_{0}^{T}  W^3_t \diff W_t| \mathcal{F}_0} = 0
+	\end{equation}
+ 	
+ 	\begin{equation}
+ 		\Expec{W^4_T} = 6 \cdot \int_{0}^{T}\Expec{ W^2_t }  \diff t = 6 \cdot (1)!! \cdot \frac{1}{2} T^2 = 3 T^2
+ 	\end{equation}
+ 
+ 
+ 	\item 
+ 	\begin{equation}
+ 		\begin{aligned}
+ 			\diff W_{t}^{6} = 6 W_t^{5} \diff W_t + 15 W^4_t \diff t. \\
+ 			 W_{t}^{6} = 6 \int_{0}^{T} W_t^{5} \diff W_t + 15  \int_{0}^{T} W^4_t \diff t \\
+ 			 \Expec{W_{t}^{6}} = 6 \cdot \Expec{\int_{0}^{T} W_t^{5} \diff W_t} + 15 \cdot  \Expec{\int_{0}^{T} W^4_t \diff t} = 15 \cdot \Expec{\int_{0}^{T} W^4_t \diff t} = 15 T^3
+ 		\end{aligned}
+ 	\end{equation}
+	\end{enumerate}
+\end{sol}
+

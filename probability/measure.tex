@@ -1,0 +1,22 @@
+\chapter{Probability}
+\begin{thm}[Kolmogorov]
+	Пусть $\nu_{t_1 t_2 t_3 \dots t_k}$ для  $\forall t_1, t_2, t_3 \dots t_k \in T, \quad  k \in \mathrm{N}$ являются вероятностными мерами на $\mathrm{R}^{kn}$ такими, что:
+	\begin{equation}
+		\nu_{t_{\sigma(1)}}, \cdots, t_{\sigma(k)}\left(F_{1} \times \cdots \times F_{k}\right)=\nu_{t_{1}, \cdots, t_{k}}\left(F_{\sigma^{-1}(1)} \times \cdots \times F_{\sigma^{-1}(k)}\right)
+	\end{equation}
+для всех перестановок $\sigma \in S_k $
+\begin{equation}
+	\begin{aligned}
+		&\nu_{t_{1}, \ldots, t_{k}}\left(F_{1} \times \cdots \times \cdots \times F_{k}\right) \\
+		&\quad=\nu_{t_{1}, \ldots, t_{k}, t_{k+1}, \ldots, t_{k+m}}\left(F_{1} \times \cdots \times F_{k} \times \mathbf{R}^{n} \times \cdots \times \mathbf{R}^{n}\right)
+	\end{aligned}
+\end{equation}
+Тогда $\exists (\Omega, \mathcal{F}, \mathrm{P})$ и случайный процесс $\left\{X_t\right\}$ на $\Omega$, $X_t:\Omega \rightarrow   \mathrm{R}^n$
+\begin{equation}
+	\nu_{t_{1}, \ldots, t_{k}}\left(F_{1} \times \cdots \times F_{k}\right)=P\left[X_{t_{1}} \in F_{1}, \cdots, X_{t_{k}} \in F_{k}\right]
+\end{equation}
+\end{thm}	
+
+\begin{exc}[Irwin-Hall distribution]
+	Try to derive Irwin-Hall distribution formula for pdf convolution formula.
+\end{exc}
