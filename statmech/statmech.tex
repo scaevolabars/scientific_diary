@@ -1,0 +1,27 @@
+\begin{prb}[1D Ising model with periodic boundary conditions]
+	\begin{equation}
+		\begin{aligned}
+			Z=\sum_{s_{1}=\pm 1} \ldots \sum_{s_{N}=\pm 1} \prod_{i} \exp \left(\beta J s_{i} s_{i+1}+\frac{\beta B}{2}\left(s_{i}+s_{i+1}\right)\right) \\
+			s_{N+1} = s_{1}
+		\end{aligned}
+	\end{equation}
+\end{prb}
+\begin{sol}
+	\begin{equation}
+		\begin{aligned}
+			T_{s_{i}, s_{i+1}}=\exp \left(\beta J s_{i} s_{i+1}+\frac{\beta B}{2}\left(s_{i}+s_{i+1}\right)\right)\\
+			Z=\sum_{s_{1}=\pm 1} \ldots \sum_{s_{N}=\pm 1} T_{s_{i}, s_{i+1}}
+		\end{aligned}
+	\end{equation}
+	If we rewrite sum in terms of matrix multiplication we obtain:
+	\begin{equation}
+		\begin{aligned}
+				V\left(\sigma, \sigma^{\prime}\right)=\exp \left[k \sigma \sigma^{\prime}+\frac{h}{2}\left(\sigma+\sigma^{\prime}\right)\right] \\
+				Z_{N}=\sum_{\sigma_{1}} \sum_{\sigma_{2}} \ldots \sum_{\sigma_{N}} V\left(\sigma_{1}, \sigma_{2}\right) V\left(\sigma_{2}, \sigma_{3}\right) \cdot \ldots \cdot V\left(\sigma_{N}, \sigma_{1}\right)
+		\end{aligned}
+	\end{equation}
+	When summed each factor $V\left(\sigma_{i}, \sigma_{i+1}\right) V\left(\sigma_{i+2}, \sigma_{i+3}\right)$ can be viewed as the matrix product of $T$
+	\begin{equation}
+		Z_{N} = \operatorname{Tr}T^{N}
+	\end{equation}	
+\end{sol}
